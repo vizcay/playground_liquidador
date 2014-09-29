@@ -7,8 +7,44 @@ class TestLegajo < Minitest::Unit::TestCase
     @legajo = Legajo.new
   end
 
-  def test_legajo
-    skip 'pending..'
+  def test_nombre_presence
+    @legajo.nombre = nil
+    @legajo.validate
+    assert(@legajo.errors.include? Legajo::ERR_NOMBRE_FALTANTE)
+  end
+
+  def test_nombre_max_30
+    @legajo.nombre = 'x' * 31
+    @legajo.validate
+    assert(@legajo.errors.include? Legajo::ERR_LARGO_NOMBRE)
+  end
+
+  def test_cuit_presence
+    @legajo.cuit = nil
+    @legajo.validate
+    assert(@legajo.errors.include? Legajo::ERR_CUIT_FALTANTE)
+  end
+
+  def test_calcula_edad
+    @legajo.fecha_nacimiento = Date.new(1985, 10, 8)
+    assert_equal(28, @legajo.edad)
+    @legajo.fecha_nacimiento = Date.new(1985, 6, 29)
+    assert_equal(29, @legajo.edad)
+  end
+
+  def test_calcula_antiguedad
+    @legajo.fecha_alta = Date.new(2014, 1, 1)
+    assert_equal(0, @legajo.antiguedad)
+    @legajo.fecha_alta = Date.new(2013, 8, 1)
+    assert_equal(1, @legajo.antiguedad)
+    @legajo.fecha_alta = Date.new(2009, 1, 1)
+    assert_equal(5, @legajo.antiguedad)
+  end
+
+  def test_fecha_nacimiento_menor_16
+    @legajo.fecha_nacimiento = Date.new(2000, 1, 1)
+    @legajo.validate
+    assert(@legajo.errors.include? Legajo::ERR_MENOR_16)
   end
 end
 

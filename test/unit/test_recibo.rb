@@ -6,9 +6,5 @@ class TestRecibo < Minitest::Unit::TestCase
   def setup
     @recibo = Recibo.new
   end
-
-  def test_recibo
-    skip 'pending..'
-  end
 end
 
