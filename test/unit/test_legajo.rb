@@ -25,6 +25,14 @@ class TestLegajo < Minitest::Unit::TestCase
     assert(@legajo.errors.include? Legajo::ERR_CUIT_FALTANTE)
   end
 
+  def test_fecha_nacimiento_presence
+    skip
+  end
+
+  def test_fecha_alta_presence
+    skip
+  end
+
   def test_calcula_edad
     @legajo.fecha_nacimiento = Date.new(1985, 10, 8)
     assert_equal(29, @legajo.edad)
