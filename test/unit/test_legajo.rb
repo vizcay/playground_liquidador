@@ -27,9 +27,9 @@ class TestLegajo < Minitest::Unit::TestCase
 
   def test_calcula_edad
     @legajo.fecha_nacimiento = Date.new(1985, 10, 8)
-    assert_equal(28, @legajo.edad)
-    @legajo.fecha_nacimiento = Date.new(1985, 6, 29)
     assert_equal(29, @legajo.edad)
+    @legajo.fecha_nacimiento = Date.new(1990, 12, 13)
+    assert_equal(23, @legajo.edad)
   end
 
   def test_calcula_antiguedad

@@ -1,4 +1,5 @@
 # encoding: utf-8
+require 'date'
 
 class Legajo
   attr_accessor :nombre, :cuit, :fecha_nacimiento, :fecha_alta, :errors
