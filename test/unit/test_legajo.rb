@@ -26,11 +26,15 @@ class TestLegajo < Minitest::Unit::TestCase
   end
 
   def test_fecha_nacimiento_presence
-    skip
+    @legajo.fecha_nacimiento = nil
+    @legajo.validate
+    assert(@legajo.errors.include? Legajo::ERR_FECHA_NAC_FALTANTE)
   end
 
   def test_fecha_alta_presence
-    skip
+    @legajo.fecha_alta = nil
+    @legajo.validate
+    assert(@legajo.errors.include? Legajo::ERR_FECHA_ALTA_FALTANTE)
   end
 
   def test_calcula_edad
