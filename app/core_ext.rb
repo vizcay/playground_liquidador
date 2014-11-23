@@ -5,3 +5,7 @@ class Date
   end
 end
 
+def bigdec(value)
+  BigDecimal.new(value)
+end
+
